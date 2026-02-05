@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Valentine 💘</title>
+
+<style>
+  * { box-sizing: border-box; font-family: 'Arial Black', Arial, sans-serif; }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ff758f, #ffb3c6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* IG STORY FRAME */
+  .story {
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    color: #fff;
+  }
+
+  h1 {
+    margin-top: 28vh;
+    font-size: 2.5rem;
+    text-shadow: 0 0 20px rgba(255,0,120,1);
+  }
+
+  .buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  button {
+    padding: 16px 32px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .yes {
+    background: linear-gradient(135deg, #00f5d4, #9bf6ff);
+    color: #000;
+  }
+
+  .no {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    backdrop-filter: blur(6px);
+  }
+
+  /* FLOATING HEARTS */
+  .heart {
+    position: absolute;
+    font-size: 24px;
+    animation: float 6s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.4); opacity: 0; }
+  }
+
+  /* YES SCREEN */
+  .yes-screen {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, #ff4d6d, #120014);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .yes-screen h2 {
+    font-size: 3.2rem;
+    text-shadow: 0 0 25px #ff9ebb;
+  }
+
+  .details {
+    margin-top: 14px;
+    font-size: 1.15rem;
+    background: rgba(255,255,255,0.18);
+    padding: 16px 24px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+  }
+
+  .from {
+    margin-top: 8px;
+    font-size: 1rem;
+    opacity: 0.95;
+  }
+
+  .celebrate {
+    margin-top: 25px;
+    width: 240px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255,0,120,0.6);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="story">
+  <h1>GA, WILL YOU BE MY VALENTINE?</h1>
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">YES 💖</button>
+    <button class="no" onclick="noClicked()">NO 😭</button>
+  </div>
+</div>
+
+<div class="yes-screen" id="yesScreen">
+  <h2>YEY! I LOVE YOU!</h2>
+
+  <div class="details">
+    📅 <b>February 14, 2026</b><br>
+    📍 <b>O2 Rooftop Bar<br>Taguig City</b>
+  </div>
+
+  <div class="from">From: <b>Keneth 💌</b></div>
+
+  <!-- THE OFFICE CELEBRATION GIF -->
+  <img
+    class="celebrate"
+    src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Dancing"
+  >
+
+  <!-- AUDIO -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_0fbb3e1a3b.mp3">
+  </audio>
+
+  <audio id="celebrateSound">
+    <source src="https://cdn.pixabay.com/audio/2021/08/04/audio_6e0b4f3c2c.mp3">
+  </audio>
+</div>
+
+<script>
+  // floating hearts
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (4 + Math.random()*4) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+  }, 300);
+
+  function noClicked() {
+    const msgs = [
+      "Are you sure? 🥺",
+      "Really sure? 😭",
+      "My heart 💔",
+      "GA pls 😢",
+      "Okay… last chance 😩"
+    ];
+    alert(msgs[Math.floor(Math.random()*msgs.length)]);
+  }
+
+  function yesClicked() {
+    document.getElementById("yesScreen").style.display = "flex";
+
+    // music + celebration sound
+    document.getElementById("bgMusic").play();
+    document.getElementById("celebrateSound").play();
+  }
+</script>
+
+</body>
+</html>
